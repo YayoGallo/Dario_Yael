@@ -36,7 +36,7 @@ public class Stack {
 	public String toString() {
 		StringBuilder s=new StringBuilder();
 		for(int i=0; i<size; i++) {
-			s.append(stack[i]).append("->");
+			s.append(stack[i]);
 		}
 		return s.toString();
 	}
