@@ -7,41 +7,46 @@ public class LinkedStack {
 		this.size=0;
 		this.apuntador=null;
 	}
+	public void push(Object value) {
+		Nodo nodo=new Nodo();
+		nodo.setDato(value);
+		if(null==apuntador) {
+			this.apuntador=nodo;
+			this.size++;
+		}else {
+			nodo.setEnlace(apuntador);
+			this.apuntador=nodo;
+			this.size++;
+		}
+		
+	}
 	public int size() {
 		return size;
 	}
 	public boolean isEmpty() {
-		return size==0;
-		//return null==apuntador;
+		return null==apuntador;
 	}
 	public Object peak() {
-		return apuntador.getDatos();
+		return apuntador.getDato();
 	}
-	public void push(Object value) {
-		Nodo nodo=new Nodo();
-		nodo.setDatos(value);
-		if (null!=apuntador){
-			nodo.setEnlace(apuntador);	
-		}
-		this.apuntador=nodo;
-		this.size++;
-	}
+
 	public Object pop() {
 		Object value=null;
-		if(null!=apuntador.getEnlace()) {
-			value=apuntador.getDatos();
+		if(null!=apuntador) {
+			value=apuntador.getDato();
 			this.apuntador=apuntador.getEnlace();
 			size--;
 		}
+	
 		return value;
 	}
 	public String toString() {
-		String respuesta="";
 		Nodo temp=apuntador;
+		String s="";
 		while(null!=temp) {
-			respuesta= temp.getDatos()+"<="+respuesta;
+			s=temp.getDato()+"<-"+s;
 			temp=temp.getEnlace();
 		}
-		return respuesta;
+		return s.toString();
 	}
 }

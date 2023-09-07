@@ -8,7 +8,6 @@ public class PruebaPilas {
 		Stack stack=new Stack(10);
 		System.out.println(stack.isEmpty());
 		System.out.println(stack.size());
-		System.out.println(stack.peak());
 		stack.push(10);
 		System.out.println(stack.isEmpty());
 		System.out.println(stack.size());

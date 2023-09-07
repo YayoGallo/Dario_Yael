@@ -1,13 +1,14 @@
 package udelp.estructuras.nodos;
 
 public class Nodo {
-	private Object datos;
+	private Object dato;
 	private Nodo enlace;
-	public Object getDatos() {
-		return datos;
+	
+	public Object getDato() {
+		return dato;
 	}
-	public void setDatos(Object datos) {
-		this.datos = datos;
+	public void setDato(Object dato) {
+		this.dato = dato;
 	}
 	public Nodo getEnlace() {
 		return enlace;
