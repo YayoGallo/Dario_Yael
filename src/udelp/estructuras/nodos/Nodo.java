@@ -3,7 +3,6 @@ package udelp.estructuras.nodos;
 public class Nodo {
 	private Object dato;
 	private Nodo enlace;
-	
 	public Object getDato() {
 		return dato;
 	}

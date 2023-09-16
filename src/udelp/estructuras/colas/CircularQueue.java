@@ -25,6 +25,7 @@ public class CircularQueue {
 		Object value=null;
 		if(null!=queue[front]) {
 			value=queue[front];
+			queue[front]=null;
 			front++;
 			size--;
 			if(front==queue.length) {
