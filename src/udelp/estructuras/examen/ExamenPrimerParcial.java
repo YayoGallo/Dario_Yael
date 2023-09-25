@@ -50,8 +50,15 @@ public class ExamenPrimerParcial {
 		b=Integer.parseInt(String.valueOf(stack.pop()));
 		c=a-b;
 		System.out.println(a+"-"+b+"="+c);
-		
-		
+		a=Integer.parseInt(String.valueOf(stack.pop()));
+		b=c*a;
+		System.out.println(c+"*"+a+"="+b);
+		a=Integer.parseInt(String.valueOf(stack.pop()));
+		c=b+a;
+		System.out.println(b+"+"+a+"="+c);
+		a=Integer.parseInt(String.valueOf(stack.pop()));
+		b=c-a;
+		System.out.println(c+"-"+a+"="+b);
 	}
 	
 	public String[] ListaSinRepeticiones() {
@@ -89,16 +96,18 @@ public class ExamenPrimerParcial {
 	}
 	
 	public int SacarCuandoEs25() {
-		int respuesta = 0;
+		int respuesta = 0,aux;
 		CircularQueue cola=new CircularQueue(50);
 		Random random = new Random();
 		do {
-			cola.enqueue(random.nextInt(100) + 1);
-			if (25==Integer.parseInt(String.valueOf(cola.front()))) {
+			aux=random.nextInt(100) + 1;
+			if (25==aux&&!cola.isEmpty()) {
 				cola.dequeue();
 				cola.dequeue();
 				cola.dequeue();
 				respuesta+=1;
+			}else {
+				cola.enqueue(random.nextInt(100) + 1);
 			}
 		}while(!(cola.size()==50));
 		return respuesta;
