@@ -86,6 +86,8 @@ public class MaquinaExpendedora {
 								moneda=Double.parseDouble(leer.nextLine());
 								if (moneda==.5||moneda==1||moneda==2||moneda==5||moneda==10||moneda==20) {
 									cartera.push(moneda);
+								}else {
+									System.out.println("Moneda no aceptada, se ha devuelto la moneda");
 								}
 								monto=movimientos.sumaStack(cartera);
 							}while(monto<=maquina[indiceFila][indiceColumna].getPrecio());
@@ -253,22 +255,22 @@ public class MaquinaExpendedora {
 	
 	public double ganancias(Cambios cambios) {
 		int ganancias = 0;
-		while (cambios.getCentavo50().size()<20) {
+		while (cambios.getCentavo50().size()>50) {
 			ganancias+=Double.parseDouble(String.valueOf(cambios.getCentavo50().pop()));
 		}
-		while (cambios.getMoneda1().size()<20) {
+		while (cambios.getMoneda1().size()>50) {
 			ganancias+=Double.parseDouble(String.valueOf(cambios.getMoneda1().pop()));
 		}
-		while (cambios.getMoneda2().size()<20) {
+		while (cambios.getMoneda2().size()>50) {
 			ganancias+=Double.parseDouble(String.valueOf(cambios.getMoneda2().pop()));
 		}
-		while (cambios.getMoneda5().size()<20) {
+		while (cambios.getMoneda5().size()>50) {
 			ganancias+=Double.parseDouble(String.valueOf(cambios.getMoneda5().pop()));
 		}
-		while (cambios.getMoneda10().size()<20) {
+		while (cambios.getMoneda10().size()>50) {
 			ganancias+=Double.parseDouble(String.valueOf(cambios.getMoneda10().pop()));
 		}
-		while (cambios.getMoneda20().size()<20) {
+		while (cambios.getMoneda20().size()>50) {
 			ganancias+=Double.parseDouble(String.valueOf(cambios.getMoneda20().pop()));
 		}
 		return ganancias;

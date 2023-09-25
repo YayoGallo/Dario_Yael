@@ -34,11 +34,23 @@ public class BooleanPriorityQueue {
 			r=nodo;
 			f=r;
 		}
-		else if (null == f)
+		else if (prioridad==true)
 		{
-			f = nodo; 
+			BooleanNodo temp=f;
+			while(null!=temp.getEnlace()&&temp.getEnlace().getPrioridad()==true) {
+				temp=temp.getEnlace();
+			}
+			if(null==temp.getEnlace()) {
+				r.setEnlace(nodo);
+			}else {
+				BooleanNodo siguiente=temp.getEnlace();
+				temp.setEnlace(nodo);
+				nodo.setEnlace(siguiente);
+			}
+		}else {
+			r.setEnlace(nodo);
+			r=nodo;
 		}
-		r = nodo;
 		size++;
 	}
 	
