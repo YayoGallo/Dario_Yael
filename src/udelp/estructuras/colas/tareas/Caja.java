@@ -4,7 +4,7 @@ import udelp.estructuras.nodos.LinkedStack;
 public class Caja extends Thread {
 	private Persona persona, ultimoBeneficiario;
     private boolean ocupada;
-    private Billetes cajaExpendedora = new Billetes();
+    private Billetes caja = new Billetes();
     private BooleanPriorityQueue ingresos;
 
     public Caja(BooleanPriorityQueue cola) {
@@ -32,15 +32,15 @@ public class Caja extends Thread {
             if (persona.getTarea() == 0) {
                 deposito(persona.getCartera());
             } else {
-                cajaVacia();
-                persona.setCartera(retiro(persona.getMonto()));
+                rellenarCaja();
+                retiro(persona.getMonto());
             }
             ocupada = false;
         }
     }
 
 		public Billetes getCajaExpendedora() {
-			return this.cajaExpendedora;
+			return this.caja;
 		}
 		public Persona getPersona() {
 			return this.persona;
@@ -56,157 +56,145 @@ public class Caja extends Thread {
 				aux=(int)moneda;
 				switch (aux) {
 				case 1:
-					if (!(cajaExpendedora.getMoneda1().size()==200)) {
-						cajaExpendedora.getMoneda1().push(moneda);
+					if (!(caja.getMoneda1().size()==200)) {
+						caja.getMoneda1().push(moneda);
 					}
 					break;
 				case 5:
-					if (!(cajaExpendedora.getMoneda5().size()==200)) {
-						cajaExpendedora.getMoneda5().push(moneda);
+					if (!(caja.getMoneda5().size()==200)) {
+						caja.getMoneda5().push(moneda);
 					}
 					break;
 				case 10:
-					if (!(cajaExpendedora.getMoneda10().size()==200)) {
-						cajaExpendedora.getMoneda10().push(moneda);
+					if (!(caja.getMoneda10().size()==200)) {
+						caja.getMoneda10().push(moneda);
 					}
 					break;
 				case 20:
-					if (!(cajaExpendedora.getBillete20().size()==200)) {
-						cajaExpendedora.getBillete20().push(moneda);
+					if (!(caja.getBillete20().size()==200)) {
+						caja.getBillete20().push(moneda);
 					}
 					break;
 				case 50:
-					if (!(cajaExpendedora.getBillete50().size()==200)) {
-						cajaExpendedora.getBillete50().push(moneda);
+					if (!(caja.getBillete50().size()==200)) {
+						caja.getBillete50().push(moneda);
 					}
 					break;
 				case 100:
-					if (!(cajaExpendedora.getBillete100().size()==200)) {
-						cajaExpendedora.getBillete100().push(moneda);
+					if (!(caja.getBillete100().size()==200)) {
+						caja.getBillete100().push(moneda);
 					}
 					break;
 				case 200:
-					if (!(cajaExpendedora.getBillete200().size()==200)) {
-						cajaExpendedora.getBillete200().push(moneda);
+					if (!(caja.getBillete200().size()==200)) {
+						caja.getBillete200().push(moneda);
 					}
 					break;
 				case 500:
-					if (!(cajaExpendedora.getBillete500().size()==200)) {
-						cajaExpendedora.getBillete500().push(moneda);
+					if (!(caja.getBillete500().size()==200)) {
+						caja.getBillete500().push(moneda);
 					}
 					break;
 				case 1000:
-					if (!(cajaExpendedora.getBillete1000().size()==200)) {
-						cajaExpendedora.getBillete1000().push(moneda);
+					if (!(caja.getBillete1000().size()==200)) {
+						caja.getBillete1000().push(moneda);
 					}
 					break;
 				}
 			}while (cartera.size()>0);	
 		}
-		public LinkedStack retiro(int monto) {
-			LinkedStack cartera=new LinkedStack();
-			int dinero=0;
-			int[] cambio = {1,5,10,20,50,100,200,500};
-			do {
-				int aleatorio=cambio[(int)(Math.random()*7)];
-				if(dinero+aleatorio<=monto) {
-					switch (aleatorio) {
-					case 1:
-						cartera.push(cajaExpendedora.getMoneda1().pop());
-						break;
-					case 5:
-						cartera.push(cajaExpendedora.getMoneda5().pop());
-						break;
-					case 10:
-						cartera.push(cajaExpendedora.getMoneda10().pop());
-						break;
-					case 20:
-						cartera.push(cajaExpendedora.getBillete20().pop());
-						break;
-					case 50:
-						cartera.push(cajaExpendedora.getBillete50().pop());
-						break;
-					case 100:
-						cartera.push(cajaExpendedora.getBillete100().pop());
-						break;
-					case 200:
-						cartera.push(cajaExpendedora.getBillete200().pop());
-						break;
-					case 500:
-						cartera.push(cajaExpendedora.getBillete500().pop());
-						break;
-					case 1000:
-						cartera.push(cajaExpendedora.getBillete1000().pop());
-						break;
-					}
-					dinero=dinero+aleatorio;
-				}
-	        }while(dinero<monto);
-			return cartera;		
-		}
-		public void cajaVacia() {
-			if(cajaExpendedora.getMoneda1().size()<=20) {
-				for(int i = 0; i < 50; i++) {
-					cajaExpendedora.getMoneda1().push(1);
-				}	
-			}else if(cajaExpendedora.getMoneda5().size()<=10) {
-				for(int i = 0; i < 50; i++) {
-					cajaExpendedora.getMoneda5().push(5);
-				}
-			}else if(cajaExpendedora.getMoneda10().size()<=10) {
-				for(int i = 0; i < 50; i++) {
-					cajaExpendedora.getMoneda10().push(10);
-				}
-			}else if(cajaExpendedora.getBillete20().size()<=10) {
-				for(int i = 0; i < 50; i++) {
-					cajaExpendedora.getBillete20().push(20);
-				}
-			}else if(cajaExpendedora.getBillete50().size()<=10) {
-				for(int i = 0; i < 50; i++) {
-					cajaExpendedora.getBillete50().push(50);
-				}
-			}else if(cajaExpendedora.getBillete100().size()<=10) {
-				for(int i = 0; i < 50; i++) {
-					cajaExpendedora.getBillete100().push(100);
-				}
-			}else if(cajaExpendedora.getBillete200().size()<=10) {
-				for(int i = 0; i < 50; i++) {
-					cajaExpendedora.getBillete200().push(200);
-				}
-			}else if(cajaExpendedora.getBillete500().size()<=10) {
-				for(int i = 0; i < 50; i++) {
-					cajaExpendedora.getBillete500().push(500);
-				}
-			}else if(cajaExpendedora.getBillete1000().size()<=10) {
-				for(int i = 0; i < 50; i++) {
-					cajaExpendedora.getBillete1000().push(1000);
+		public void retiro (double cartera) {
+			double restante=cartera, moneda;
+			while(restante>0) {
+				if(restante>=1000) {
+					moneda=Double.parseDouble(String.valueOf(caja.getBillete1000().pop()));
+					restante-=moneda;
+				}else if (restante>=500) {
+					moneda=Double.parseDouble(String.valueOf(caja.getBillete500().pop()));
+					restante-=moneda;
+				}else if (restante>=10) {
+					moneda=Double.parseDouble(String.valueOf(caja.getBillete200().pop()));
+					restante-=moneda;
+				}else if (restante>=10) {
+					moneda=Double.parseDouble(String.valueOf(caja.getBillete100().pop()));
+					restante-=moneda;
+				}else if (restante>=10) {
+					moneda=Double.parseDouble(String.valueOf(caja.getBillete50().pop()));
+					restante-=moneda;
+				}else if (restante>=10) {
+					moneda=Double.parseDouble(String.valueOf(caja.getBillete20().pop()));
+					restante-=moneda;
+				}else if (restante>=10) {
+					moneda=Double.parseDouble(String.valueOf(caja.getMoneda10().pop()));
+					restante-=moneda;
+				}else if (restante>=5) {
+					moneda=Double.parseDouble(String.valueOf(caja.getMoneda5().pop()));
+					restante-=moneda;
+				}else if (restante>=2) {
+					moneda=Double.parseDouble(String.valueOf(caja.getMoneda2().pop()));
+					restante-=moneda;
+				}else if (restante>=1) {
+					moneda=Double.parseDouble(String.valueOf(caja.getMoneda1().pop()));
+					restante-=moneda;
 				}
 			}
 		}
-		public String informacionCaja() {
-		    String s = "\tCaja " + "\n" + "Cuenta\t|Accion\t|Monto\n";
-		    if (this.ocupada) {
-		        s += persona.getCuenta() + "\t|" + (persona.getTarea() == 0 ? "Deposito" : "Retiro") + "\t|" + "$" + persona.getMonto() + "\n";
-		    } else {
-		        s += "Caja Vacia\n";
-		    }
-
+		public void rellenarCaja() {
+			if(caja.getMoneda1().size()<=20) {
+				for(int i = 0; i < 50; i++) {
+					caja.getMoneda1().push(1);
+				}	
+			}else if(caja.getMoneda5().size()<=10) {
+				for(int i = 0; i < 50; i++) {
+					caja.getMoneda5().push(5);
+				}
+			}else if(caja.getMoneda10().size()<=10) {
+				for(int i = 0; i < 50; i++) {
+					caja.getMoneda10().push(10);
+				}
+			}else if(caja.getBillete20().size()<=10) {
+				for(int i = 0; i < 50; i++) {
+					caja.getBillete20().push(20);
+				}
+			}else if(caja.getBillete50().size()<=10) {
+				for(int i = 0; i < 50; i++) {
+					caja.getBillete50().push(50);
+				}
+			}else if(caja.getBillete100().size()<=10) {
+				for(int i = 0; i < 50; i++) {
+					caja.getBillete100().push(100);
+				}
+			}else if(caja.getBillete200().size()<=10) {
+				for(int i = 0; i < 50; i++) {
+					caja.getBillete200().push(200);
+				}
+			}else if(caja.getBillete500().size()<=10) {
+				for(int i = 0; i < 50; i++) {
+					caja.getBillete500().push(500);
+				}
+			}else if(caja.getBillete1000().size()<=10) {
+				for(int i = 0; i < 50; i++) {
+					caja.getBillete1000().push(1000);
+				}
+			}
+		}
+		public String estatus() {
+		    String s = "Caja ";
 		    if (ultimoBeneficiario != null) {
 		        s += "Último beneficiario atendido:\n";
 		        s += "Cuenta: " + ultimoBeneficiario.getCuenta() + "\n";
 		        s += "Accion: " + (ultimoBeneficiario.getTarea() == 0 ? "Deposito" : "Retiro") + "\n";
 		    }
-
 		    s += "Dinero en caja:\n";
-		    s += "Billetes/Monedas de $1: " + cajaExpendedora.getMoneda1().size() + "\n";
-		    s += "Billetes de $5: " + cajaExpendedora.getMoneda5().size() + "\n";
-		    s += "Billetes de $10: " + cajaExpendedora.getMoneda10().size() + "\n";
-		    s += "Billetes de $20: " + cajaExpendedora.getBillete20().size() + "\n";
-		    s += "Billetes de $50: " + cajaExpendedora.getBillete50().size() + "\n";
-		    s += "Billetes de $100: " + cajaExpendedora.getBillete100().size() + "\n";
-		    s += "Billetes de $200: " + cajaExpendedora.getBillete200().size() + "\n";
-		    s += "Billetes de $500: " + cajaExpendedora.getBillete500().size() + "\n";
-		    s += "Billetes de $1000: " + cajaExpendedora.getBillete1000().size() + "\n";
+		    s += "Billetes/Monedas de $1: " + caja.getMoneda1().size() + "\n";
+		    s += "Monedas de $5: " + caja.getMoneda5().size() + "\n";
+		    s += "Monedas de $10: " + caja.getMoneda10().size() + "\n";
+		    s += "Billetes de $20: " + caja.getBillete20().size() + "\n";
+		    s += "Billetes de $50: " + caja.getBillete50().size() + "\n";
+		    s += "Billetes de $100: " + caja.getBillete100().size() + "\n";
+		    s += "Billetes de $200: " + caja.getBillete200().size() + "\n";
+		    s += "Billetes de $500: " + caja.getBillete500().size() + "\n";
+		    s += "Billetes de $1000: " + caja.getBillete1000().size() + "\n";
 
 		    return s;
 		}

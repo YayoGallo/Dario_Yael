@@ -23,10 +23,10 @@ package udelp.estructuras.colas.tareas;
 	                switch (seleccion) {
 	                    case 1:
 	                        System.out.println("\tFila de Banco:\n" + ingreso.getCola().toString());
-	                        System.out.println(caja1.informacionCaja());
-	                        System.out.println(caja2.informacionCaja());
-	                        System.out.println(caja3.informacionCaja());
-	                        System.out.println(caja4.informacionCaja());
+	                        System.out.println(caja1.estatus());
+	                        System.out.println(caja2.estatus());
+	                        System.out.println(caja3.estatus());
+	                        System.out.println(caja4.estatus());
 	                        break;
 	                    case 2:
 	                        System.out.println("Adios");
