@@ -17,7 +17,7 @@ public class Caja extends Thread {
                 if (!ingresos.isEmpty()) {
                     atenderCliente();
                 }
-                Thread.sleep((int) (1 + Math.random() * 100000));
+                Thread.sleep((int) (1 + Math.random() * 100));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
