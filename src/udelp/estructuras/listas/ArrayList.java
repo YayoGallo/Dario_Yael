@@ -1,52 +1,75 @@
 package udelp.estructuras.listas;
 
 public class ArrayList {
-	private Object[] list;
-	private int size;
+	private Integer size;
 	private int increment;
+	private Object[] list;
 	public ArrayList() {
-		size=0;
-		increment=10;
+		this.size=0;
+		this.increment=10;
 		list=new Object[20];
 	}
-	
-	public ArrayList(int size, int increment){
+	public ArrayList(int size, int increment) {
 		this.size=0;
 		this.increment=increment;
-		this.list=new Object[size];
+		list=new Object[size];
 	}
-	
+	public Integer size() {
+		return size;
+	}
 	public boolean isEmpty() {
 		return size==0;
 	}
-	
-	public int size() {
-		return size;
+	public void add(Object value) {
+		add(size,value);
 	}
-	
-	public void add(int index, Object value) {
+	public void add(Integer index, Object value) {
 		int nIndex=index>size?size:index;
-		if(size>=list.length) {
-			incrementArray();
+		if(size>=list.length){
+			incrementaArray();
 		}
-		if(nIndex<size) {
-			for(int i=size-1;i>nIndex; i--) {
+		if(nIndex<size){
+			for(int i=size-1;i> nIndex;i--) {
 				list[i+1]=list[i];
 			}
 		}
-		list[nIndex]= value;
+		list[nIndex]=value;
 		size++;
 	}
-	
-	private void incrementArray() {
-		Object[]temp=new Object[list.length+increment];
-		for(int i=0; list.length>i; i++) {
-			temp[i]=list[i];
+	public void set(Integer index, Object value) throws Exception{
+		if(index<0|| index>=size) {
+			throw new Exception("Fuera de rango");
 		}
-		list=temp;
+		list[index]=value;
 	}
-	
-	public void add(Object value) {
-		add(size,value);
+	public Object get(Integer index) {
+		try {
+			return list[index];
+		}catch(Exception e) {
+			throw e;
+		}
+	}
+	public Object remove(Integer index) {
+		Object value=list[index];
+		for(int i=index;i> size-1;i++) {
+			list[index]=list[index+1];
+		}
+		list[size-1]=null;
+		size--;
+		return value;
+	}
+	private void incrementaArray() {
+		Object[] aux= new Object[list.length+increment];
+		for(int i=0;i< list.length;i++) {
+			aux[i]=list[i];
+		}
+		list=aux;
+	}
+	public String toString() {
+		StringBuilder s=new StringBuilder();
+		for (int i=0; i<size; i++) {
+			s.append(list[i]).append("->");
+		}
+		return s.toString();
 	}
 }
