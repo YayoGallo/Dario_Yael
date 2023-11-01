@@ -79,4 +79,82 @@ public class LinkedList {
 		}
 	}
 	
+	public Object get(int index)throws Exception{
+		if (index<0|| index>=size) {
+			throw new Exception("Fuera de rango");
+		}
+		Nodo actual=apuntador;
+		int tempSize=size-1;
+		while(index<tempSize) {
+			actual=actual.getEnlace();
+			tempSize--;
+		}
+		return actual.getDato();
+	}
+	
+	public void set(int index, Object value) throws Exception {
+		if (index<0|| index>=size) {
+			throw new Exception("Fuera de rango");
+		}
+		Nodo actual=apuntador;
+		int tempSize=size-1;
+		while(index<tempSize) {
+			actual=actual.getEnlace();
+			tempSize--;
+		}
+		actual.setDato(value);
+	}
+	private Object removeFirst() {
+		Nodo temp=apuntador;
+		Object value;
+		int tempSize=size;
+		while(null!=temp.getEnlace() && tempSize>1) {
+			temp=temp.getEnlace();
+			tempSize--;
+		}
+		value=temp.getEnlace().getDato();
+		temp.setEnlace(null);
+		size--;
+		return value;
+	}
+	
+	private Object removeMiddle(int index) {
+		int tempSize=size-2;
+		Nodo temp=apuntador;
+		Object value;
+		while(tempSize>index) {
+			temp=temp.getEnlace();
+			tempSize--;
+		}
+		Nodo siguiente=temp.getEnlace();
+		value=siguiente.getDato();
+		temp.setEnlace(siguiente.getEnlace());
+		size--;
+		return value;
+	}
+	
+	public Object remove(int index) throws Exception{
+		if(index<0 || index >= size) {
+			throw new Exception("Fuera de rango");
+		}
+		Object value;
+		if(index==0) {
+			value=removeFirst();
+		}else if(index==size-1) {
+			value=removeLast();
+		}else {
+			value=removeMiddle(index);
+		}
+		return value;
+	}
+	
+	public String toString() {
+		String s="";
+		Nodo temp=apuntador;
+		while(null!=temp) {
+			s=temp.getDato()+"->"+s;
+			temp=temp.getEnlace();
+		}
+		return s;
+	}
 }
