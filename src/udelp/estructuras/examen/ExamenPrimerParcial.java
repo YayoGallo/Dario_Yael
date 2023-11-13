@@ -13,7 +13,6 @@ public class ExamenPrimerParcial {
 		System.out.println("Primer ejercicico \n"+ movimientos.SumaCuandoSea50());
 		System.out.println("Segundo ejercicio");
 		movimientos.DiezNumeros();
-		
 		System.out.println("Cuarto ejercicico \n"+ movimientos.SacarCuandoEs25());
 	}
 	
