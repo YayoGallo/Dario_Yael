@@ -103,7 +103,7 @@ public class ExamenSegundoParcial {
 		String[] matriz=new String[5];
 		for (int i=0; i<matriz.length; i++) {
 			System.out.println("Ingresa la palabra "+i);
-			leer.nextLine();
+			matriz[i]=leer.nextLine();
 		}
 		return matriz;
 	}
@@ -126,5 +126,7 @@ public class ExamenSegundoParcial {
     	System.out.println(colaVocales.toString());
     	System.out.println(colaConsonantes.toString());
     }
+   
+
     
 }
